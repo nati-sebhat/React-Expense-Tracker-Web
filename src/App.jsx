@@ -16,6 +16,11 @@ function App() {
     setTransactions([...transactions, transactionWithId]);
     console.log(transactions);
   }
+
+  function handleDeleteTransaction(id){
+    setTransactions(transactions.filter((transaction) => transaction.id !== id));
+  }
+
   return (
     <>
     <nav className="flex justify-between items-center   bg-gray-800 px-6 py-4 text-white ">
@@ -29,7 +34,7 @@ function App() {
       <Filter/>
     </div>
     <AddTransaction onAddTransaction={handleAddTransaction}/>
-    <TransactionList transactions={transactions}/>
+    <TransactionList transactions={transactions} onDeleteTransaction={handleDeleteTransaction}  />
     </div>
     </>
   );
