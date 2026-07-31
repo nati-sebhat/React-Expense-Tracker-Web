@@ -31,6 +31,10 @@ setEditTransaction(null);
     console.log(transactions);
   }
 
+  function handleCancelEdit(){
+    setEditTransaction(null);
+  }
+
   function handleDeleteTransaction(id){
     setTransactions(transactions.filter((transaction) => transaction.id !== id));
   }
@@ -50,7 +54,9 @@ setEditTransaction(null);
     <AddTransaction 
     onAddTransaction={handleAddTransaction} 
     editTransaction={editTransaction} 
-    onUpdateTransaction={handleUpdateTransaction} />
+    onUpdateTransaction={handleUpdateTransaction}
+    onCancelEdit={handleCancelEdit}
+     />
     <TransactionList
      transactions={transactions} 
      onDeleteTransaction={handleDeleteTransaction} 

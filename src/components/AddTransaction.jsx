@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 
-function AddTransaction({ onAddTransaction, editTransaction, onUpdateTransaction }){
+function AddTransaction({ onAddTransaction, editTransaction, onUpdateTransaction, onCancelEdit }){
     const [formData, setFormData] = useState({
   description: "",
   amount:"",
@@ -46,6 +46,16 @@ function handleSubmit(e){
 
 }
 const categories = ["Food", "Rent", "Transport", "Entertainment", "Utilities", "Other"];
+function handleCancelEdit(){
+    setFormData({
+        description: "",
+        amount: "",
+        category: "",
+        type: "expense",
+
+    });
+    onCancelEdit();
+}
 return(
     <>
     <form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 bg-white rounded-lg shadow space-y-4 w-full border rounded-lg p-2">
@@ -67,7 +77,7 @@ return(
 
 <button type="submit" className="bg-gray-600 hover:bg-gray-500 rounded-lg px-4 py-2">Submit</button>
  
- 
+ {editTransaction && (<button type="button" onClick={handleCancelEdit}>Cancel</button>)}
 </form>
     </>
 );
