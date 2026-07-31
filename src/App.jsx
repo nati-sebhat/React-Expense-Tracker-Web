@@ -10,6 +10,20 @@ import { useState } from "react";
 
 function App() {
   const [transactions, setTransactions] = useState([]);
+  const [editTransaction, setEditTransaction] = useState(null);
+
+  function handleUpdateTransaction(updatedTransaction){
+    setTransactions(
+      transactions.map((transaction) => 
+        transaction.id === updatedTransaction.id ? updatedTransaction : transaction
+      )
+      
+    );
+setEditTransaction(null);
+  }
+  function handleEditClick(updatedTransaction) {
+    setEditTransaction(updatedTransaction);
+  }
 
   function handleAddTransaction(newTransactions){
      const transactionWithId = {...newTransactions, id:Date.now()};
@@ -33,8 +47,14 @@ function App() {
       <Search/>
       <Filter/>
     </div>
-    <AddTransaction onAddTransaction={handleAddTransaction}/>
-    <TransactionList transactions={transactions} onDeleteTransaction={handleDeleteTransaction}  />
+    <AddTransaction 
+    onAddTransaction={handleAddTransaction} 
+    editTransaction={editTransaction} 
+    onUpdateTransaction={handleUpdateTransaction} />
+    <TransactionList
+     transactions={transactions} 
+     onDeleteTransaction={handleDeleteTransaction} 
+     onEditTransaction={handleEditClick}  />
     </div>
     </>
   );

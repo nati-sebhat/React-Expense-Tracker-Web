@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
-function AddTransaction({ onAddTransaction }){
+function AddTransaction({ onAddTransaction, editTransaction, onUpdateTransaction }){
     const [formData, setFormData] = useState({
   description: "",
   amount:"",
   category:"",
   type:"expense",
 });
-
+useEffect(() => {
+    if(editTransaction){
+        setFormData(editTransaction)
+    }
+}, [editTransaction])
 
 function handleChange(e){
     const {name, value} = e.target;
@@ -21,7 +25,14 @@ function handleSubmit(e){
         alert("Give a correct Input!");
         return;
     }
-    onAddTransaction(formData);
+
+    if(editTransaction){
+        onUpdateTransaction(formData);
+      
+    }else{
+        onAddTransaction(formData);
+    }
+    
 
     setFormData({
         description: "",

@@ -1,4 +1,4 @@
-function TransactionList({transactions, onDeleteTransaction}){
+function TransactionList({transactions, onDeleteTransaction, onEditTransaction}){
     return(
         
         <ul className="border border-lg m-3 p-3">
@@ -19,6 +19,8 @@ onDeleteTransaction(transaction.id)}
         >
             ❌
             </button>
+
+            <button onClick={() => onEditTransaction(transaction)}>✏️</button>
     </li>
     
     ))}
