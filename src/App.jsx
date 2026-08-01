@@ -12,6 +12,7 @@ function App() {
   const [transactions, setTransactions] = useState([]);
   const [editTransaction, setEditTransaction] = useState(null);
   const [filterCategory, setFilterCategory] = useState("All");
+  const [searchTerm, setSearchTerm] = useState("");
 
   function handleUpdateTransaction(updatedTransaction){
     setTransactions(
@@ -43,10 +44,21 @@ setEditTransaction(null);
     setTransactions(transactions.filter((transaction) => transaction.id !== id));
   }
 
+  function handleSearchChange(e){
+    setSearchTerm(e.target.value);
+
+  }
+
   
 
   const filteredTransactions = transactions.filter((transaction) =>
-  filterCategory === "All" ? true : transaction.category === filterCategory
+  {
+      const matchesCategory = filterCategory === "All" ? true : transaction.category === filterCategory;
+      const matchesSearch = transaction.description.toLowerCase().includes(searchTerm.toLowerCase());
+      return matchesCategory && matchesSearch;
+
+  }
+      
   )
   
 
@@ -59,7 +71,10 @@ setEditTransaction(null);
     <div className="mx-auto p-6 max-w-2xl bg-gray-100 min-h-screen ">
     <MainCard transactions={transactions}/>
     <div className=" flex gap-4">
-      <Search/>
+      <Search
+       searchTerm={searchTerm}
+       onSearchChange={handleSearchChange}
+      />
       <Filter 
       filterCategory={filterCategory}
       onFilterChange={handleFilterChange}
