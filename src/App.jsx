@@ -68,7 +68,7 @@ setEditTransaction(null);
         <h2 className="text-xl font-bold">💸 Expensiya</h2>
         <button className="bg-gray-600 rounded-lg px-4 py-2 hover:bg-gray-500">🌙 Dark Mode</button>
     </nav>
-    <div className="mx-auto p-6 max-w-2xl bg-gray-100 min-h-screen ">
+    <div className="mx-auto p-6 max-w-2xl bg-gray-100 min-h-screen space-y-6 ">
     <MainCard transactions={transactions}/>
     <div className=" flex gap-4">
       <Search

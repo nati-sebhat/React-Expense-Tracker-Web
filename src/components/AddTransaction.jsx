@@ -59,14 +59,29 @@ function handleCancelEdit(){
 }
 return(
     <>
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 bg-white rounded-lg shadow space-y-4 w-full border rounded-lg p-2">
-<input name="description" value={formData.description} onChange={handleChange}  className="w-full border rounded-lg p-2"/>
-<input name="amount" value={formData.amount} onChange={handleChange} type="number" className="w-full border rounded-lg p-2"/>
-<select name="type" value={formData.type} onChange={handleChange}>
+    <form 
+    onSubmit={handleSubmit} 
+    className="max-w-md mx-auto m-5 p-6 bg-white rounded-lg shadow space-y-4 w-full border">
+<input 
+name="description" 
+value={formData.description} 
+onChange={handleChange}  
+placeholder="Enter description"
+className="w-full border rounded-lg p-2"/>
+<input 
+name="amount" 
+value={formData.amount} 
+onChange={handleChange} 
+type="number" 
+placeholder="amount"
+className="w-full border rounded-lg p-2"/>
+<select name="type" value={formData.type} onChange={handleChange}
+className="w-full border rounded-lg p-2">
     <option value="expense">Expense</option>
     <option value="income">Income</option>
 </select>
-<select name="category" value={formData.category} onChange={handleChange}>
+<select name="category" value={formData.category} onChange={handleChange}
+className="w-full border rounded-lg p-2">
   {categories.map((cat) => (
     <option value={cat} key={cat}>
      {cat}
@@ -75,10 +90,15 @@ return(
 </select>
 
 
-
-<button type="submit" className="bg-gray-600 hover:bg-gray-500 rounded-lg px-4 py-2">Submit</button>
+<div className="flex justify-between">
+    <button type="submit" className="bg-gray-600 hover:bg-gray-500 rounded-lg px-4 py-2">
+        {editTransaction ? "Update" : "Submit"}
+    </button>
  
- {editTransaction && (<button type="button" onClick={handleCancelEdit}>Cancel</button>)}
+ {editTransaction && (<button type="button" onClick={handleCancelEdit} className="text-lg hover:bg-gray-300 rounded-lg px-4 py-2">❌</button>)}
+</div>
+
+
 </form>
     </>
 );
