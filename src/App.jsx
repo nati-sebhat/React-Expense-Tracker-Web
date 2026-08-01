@@ -3,7 +3,7 @@ import Search from "./components/Search";
 import Filter from "./components/Filter";
 import AddTransaction from "./components/AddTransaction";
 import TransactionList from "./components/TransactionList";
-import { useState } from "react";
+import {useState } from "react";
 
 
 
@@ -11,6 +11,7 @@ import { useState } from "react";
 function App() {
   const [transactions, setTransactions] = useState([]);
   const [editTransaction, setEditTransaction] = useState(null);
+  const [filterCategory, setFilterCategory] = useState("All");
 
   function handleUpdateTransaction(updatedTransaction){
     setTransactions(
@@ -31,6 +32,9 @@ setEditTransaction(null);
     console.log(transactions);
   }
 
+  function handleFilterChange(e){
+    setFilterCategory(e.target.value);
+  }
   function handleCancelEdit(){
     setEditTransaction(null);
   }
@@ -38,6 +42,13 @@ setEditTransaction(null);
   function handleDeleteTransaction(id){
     setTransactions(transactions.filter((transaction) => transaction.id !== id));
   }
+
+  
+
+  const filteredTransactions = transactions.filter((transaction) =>
+  filterCategory === "All" ? true : transaction.category === filterCategory
+  )
+  
 
   return (
     <>
@@ -49,7 +60,10 @@ setEditTransaction(null);
     <MainCard transactions={transactions}/>
     <div className=" flex gap-4">
       <Search/>
-      <Filter/>
+      <Filter 
+      filterCategory={filterCategory}
+      onFilterChange={handleFilterChange}
+      />
     </div>
     <AddTransaction 
     onAddTransaction={handleAddTransaction} 
@@ -58,7 +72,7 @@ setEditTransaction(null);
     onCancelEdit={handleCancelEdit}
      />
     <TransactionList
-     transactions={transactions} 
+     transactions={filteredTransactions} 
      onDeleteTransaction={handleDeleteTransaction} 
      onEditTransaction={handleEditClick}  />
     </div>

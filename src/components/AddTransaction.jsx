@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import {categories} from "../constants";
 
 
 function AddTransaction({ onAddTransaction, editTransaction, onUpdateTransaction, onCancelEdit }){
@@ -45,7 +46,7 @@ function handleSubmit(e){
     
 
 }
-const categories = ["Food", "Rent", "Transport", "Entertainment", "Utilities", "Other"];
+
 function handleCancelEdit(){
     setFormData({
         description: "",
