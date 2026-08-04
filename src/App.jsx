@@ -3,16 +3,20 @@ import Search from "./components/Search";
 import Filter from "./components/Filter";
 import AddTransaction from "./components/AddTransaction";
 import TransactionList from "./components/TransactionList";
-import {useState } from "react";
+import {useEffect, useState } from "react";
 
 
 
 
 function App() {
-  const [transactions, setTransactions] = useState([]);
+  
   const [editTransaction, setEditTransaction] = useState(null);
   const [filterCategory, setFilterCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
+  const [transactions, setTransactions] = useState(() => {
+     const saved = localStorage.getItem("transactions");
+     return saved ? JSON.parse(saved) : [];
+  });
 
   function handleUpdateTransaction(updatedTransaction){
     setTransactions(
@@ -39,6 +43,11 @@ setEditTransaction(null);
   function handleCancelEdit(){
     setEditTransaction(null);
   }
+
+  useEffect(() => {
+      localStorage.setItem("transactions", JSON.stringify(transactions));
+
+  }, [transactions]);
 
   function handleDeleteTransaction(id){
     setTransactions(transactions.filter((transaction) => transaction.id !== id));

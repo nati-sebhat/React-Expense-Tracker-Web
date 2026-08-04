@@ -17,6 +17,10 @@ function TransactionList({transactions, onDeleteTransaction, onEditTransaction})
       </div>
       
                 </div>
+
+
+                 <button onClick={() => onEditTransaction(transaction)}
+                className="hover:bg-gray-300 rounded-lg px-2 py-2 cursor-pointer">✏️</button>
       
       <button onClick={() =>  {
         const confirmed = window.confirm("Are you sure you want to delete?");
@@ -28,8 +32,7 @@ onDeleteTransaction(transaction.id)}
             🗑️
             </button>
 
-            <button onClick={() => onEditTransaction(transaction)}
-                className="hover:bg-gray-300 rounded-lg px-2 py-2 cursor-pointer">✏️</button>
+           
     </li>
     
     ))}
