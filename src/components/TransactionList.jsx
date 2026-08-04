@@ -1,7 +1,7 @@
 function TransactionList({transactions, onDeleteTransaction, onEditTransaction}){
     return(
         
-        <ul className="bg-white rounded-lg p-4 shadow">
+        <ul className="bg-white rounded-lg p-4 shadow dark:bg-slate-950 dark:text-slate-100 dark:shadow dark:border-slate-600 ">
            {transactions.map((transaction) => (
             <li key={transaction.id} className = "flex gap-4  p-2" >
                 <div className=" flex-col w-full">

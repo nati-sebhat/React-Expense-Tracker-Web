@@ -15,8 +15,30 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [transactions, setTransactions] = useState(() => {
      const saved = localStorage.getItem("transactions");
-     return saved ? JSON.parse(saved) : [];
+     try{
+       return saved ? JSON.parse(saved) : [];
+     }
+     catch(error){
+      console.log("Failed to load saved transactions:", error);
+      return [];
+     }
+     
   });
+
+  const [darkMode, setDarkMode] = useState(() => {
+    
+    return localStorage.getItem("darkMode") === "true";
+
+  });
+
+  function toggleDarkMode(){
+        setDarkMode(!darkMode);
+      }
+
+      useEffect(() => {
+        localStorage.setItem("darkMode", darkMode);
+
+      }, [darkMode]);
 
   function handleUpdateTransaction(updatedTransaction){
     setTransactions(
@@ -72,12 +94,13 @@ setEditTransaction(null);
   
 
   return (
-    <>
-    <nav className="flex justify-between items-center   bg-gray-800 px-6 py-4 text-white ">
+    <div className={darkMode ? "dark" : ""}>
+
+    <nav className="flex justify-between items-center   bg-slate-950 px-6 py-4 text-white ">
         <h2 className="text-xl font-bold">💸 Expensiya</h2>
-        <button className="bg-gray-600 rounded-lg px-4 py-2 hover:bg-gray-500">🌙 Dark Mode</button>
+        <button className="bg-gray-600 rounded-lg px-4 py-2 hover:bg-gray-500" onClick={toggleDarkMode}>🌙 Dark Mode</button>
     </nav>
-    <div className="mx-auto p-6 max-w-2xl bg-gray-100 min-h-screen space-y-6 ">
+    <div className="mx-auto p-6 max-w-2xl bg-gray-100 min-h-screen space-y-6 dark:bg-slate-950 dark:border-slate-600">
     <MainCard transactions={transactions}/>
     <div className=" flex gap-4">
       <Search
@@ -100,7 +123,7 @@ setEditTransaction(null);
      onDeleteTransaction={handleDeleteTransaction} 
      onEditTransaction={handleEditClick}  />
     </div>
-    </>
+    </div>
   );
 }
 
