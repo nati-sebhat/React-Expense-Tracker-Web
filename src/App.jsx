@@ -1,4 +1,6 @@
+import './index.css';
 import MainCard from "./components/MainCard"; 
+
 import Search from "./components/Search";
 import Filter from "./components/Filter";
 import AddTransaction from "./components/AddTransaction";
@@ -96,9 +98,9 @@ setEditTransaction(null);
   return (
     <div className={darkMode ? "dark" : ""}>
 
-    <nav className="flex justify-between items-center   bg-slate-950 px-6 py-4 text-white ">
+    <nav className="flex justify-between items-center   bg-slate-950 px-6 py-4 text-white dark:bg-slate-800 dark-text-slate-300 ">
         <h2 className="text-xl font-bold">💸 Expensiya</h2>
-        <button className="bg-gray-600 rounded-lg px-4 py-2 hover:bg-gray-500" onClick={toggleDarkMode}>🌙 Dark Mode</button>
+        <button className="bg-gray-600 rounded-lg px-4 py-2 hover:bg-gray-500" onClick={toggleDarkMode}>{ darkMode ? "☀️ Light Mode"   :"🌙 Dark Mode"}</button>
     </nav>
     <div className="mx-auto p-6 max-w-2xl bg-gray-100 min-h-screen space-y-6 dark:bg-slate-950 dark:border-slate-600">
     <MainCard transactions={transactions}/>

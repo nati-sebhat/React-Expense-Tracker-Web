@@ -1,7 +1,7 @@
 function TransactionList({transactions, onDeleteTransaction, onEditTransaction}){
     return(
         
-        <ul className="bg-white rounded-lg p-4 shadow dark:bg-slate-950 dark:text-slate-100 dark:shadow dark:border-slate-600 ">
+        <ul className="bg-white rounded-lg p-4 shadow dark:bg-slate-950 dark:text-slate-100  ">
            {transactions.map((transaction) => (
             <li key={transaction.id} className = "flex gap-4  p-2" >
                 <div className=" flex-col w-full">
@@ -20,14 +20,14 @@ function TransactionList({transactions, onDeleteTransaction, onEditTransaction})
 
 
                  <button onClick={() => onEditTransaction(transaction)}
-                className="hover:bg-gray-300 rounded-lg px-2 py-2 cursor-pointer">✏️</button>
+                className="hover:bg-gray-300 rounded-lg px-2 py-2 cursor-pointer dark:hover:bg-slate-700">✏️</button>
       
       <button onClick={() =>  {
         const confirmed = window.confirm("Are you sure you want to delete?");
         if(confirmed){
 onDeleteTransaction(transaction.id)}
       }}
-      className="hover:bg-gray-300 rounded-lg px-2 py-2 cursor-pointer"
+      className="hover:bg-gray-300 rounded-lg px-2 py-2 cursor-pointer dark:hover:bg-slate-700"
         >
             🗑️
             </button>
