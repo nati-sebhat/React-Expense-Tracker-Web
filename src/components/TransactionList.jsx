@@ -3,9 +3,9 @@ function TransactionList({transactions, onDeleteTransaction, onEditTransaction})
         
         <ul className="bg-white rounded-lg p-4 shadow dark:bg-slate-950 dark:text-slate-100  ">
            {transactions.map((transaction) => (
-            <li key={transaction.id} className = "flex gap-4  p-2" >
-                <div className=" flex-col w-full">
-                   <span className="text-2xl font-bold">{transaction.description}
+            <li key={transaction.id} className = "flex flex-col sm:flex-row gap-4  p-2" >
+                <div className=" flex-col w-full min-w-0">
+                   <span className="text-2xl font-bold break-words flex-1">{transaction.description}
         
       </span>
       <div className="flex gap-7">
@@ -18,7 +18,9 @@ function TransactionList({transactions, onDeleteTransaction, onEditTransaction})
       
                 </div>
 
+               <div className="flex flex-row shrink-0">
 
+               
                  <button onClick={() => onEditTransaction(transaction)}
                 className="hover:bg-gray-300 rounded-lg px-2 py-2 cursor-pointer dark:hover:bg-slate-700">✏️</button>
       
@@ -32,7 +34,7 @@ onDeleteTransaction(transaction.id)}
             🗑️
             </button>
 
-           
+           </div>
     </li>
     
     ))}

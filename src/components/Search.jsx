@@ -6,7 +6,7 @@ function Search({searchTerm, onSearchChange}){
     placeholder="Search by description"
     value={searchTerm}
     onChange={onSearchChange}
-    className="flex-1 border rounded-lg p-2 m-3 dark:bg-gray-800 dark:border-slate-600 dark:text-slate-100"
+    className="flex-1 border rounded-lg p-2 m-3 dark:bg-gray-800 dark:border-slate-600 dark:text-slate-100 "
     />
   </div>
     );

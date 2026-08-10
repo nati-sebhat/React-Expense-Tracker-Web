@@ -19,7 +19,7 @@ function MainCard({transactions}){
 
     return(
   <>
-  <div className="bg-white rounded-lg shadow p-6 text-center space-y-4 dark:bg-slate-950">
+  <div className="bg-white rounded-lg shadow p-6 text-center space-y-4 dark:bg-slate-700   dark:shadow-white">
 
 
     <div>
