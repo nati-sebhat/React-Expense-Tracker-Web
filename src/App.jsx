@@ -21,7 +21,7 @@ function App() {
        return saved ? JSON.parse(saved) : [];
      }
      catch(error){
-      console.log("Failed to load saved transactions:", error);
+      console.error("Failed to load saved transactions:", error);
       return [];
      }
      
@@ -58,7 +58,7 @@ setEditTransaction(null);
   function handleAddTransaction(newTransactions){
      const transactionWithId = {...newTransactions, id:Date.now()};
     setTransactions([...transactions, transactionWithId]);
-    console.log(transactions);
+    
   }
 
   function handleFilterChange(e){
