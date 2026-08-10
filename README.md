@@ -1,6 +1,6 @@
 
-                                      Demo - https://react-expense-tracker-web-zeta.vercel.app/
-# 💸 Expensiya
+<a href="https://react-expense-tracker-web-zeta.vercel.app/">Demo Link </a>
+# 💸 Expensiya>
 
 A simple expense tracker built with React and Tailwind CSS.
 
